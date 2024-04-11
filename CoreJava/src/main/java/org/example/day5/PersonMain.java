@@ -1,5 +1,8 @@
 package org.example.day5;
 
+import org.example.anonymous.MouseInterface;
+import org.example.anonymous.MouseInterfaceImpl;
+
 public class PersonMain {
     public static void main(String[] args) {
         PersonInterface person=new PersonImpl(); // using concrete implementation
