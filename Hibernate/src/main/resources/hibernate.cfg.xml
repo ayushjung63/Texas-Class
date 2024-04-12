@@ -11,5 +11,7 @@
         <property name="hibernate.connection.password">postgres</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="model.Student"></mapping>
+        <mapping class="model.Address"></mapping>
+        <mapping class="model.Language"></mapping>
     </session-factory>
 </hibernate-configuration>

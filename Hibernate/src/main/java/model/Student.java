@@ -1,9 +1,8 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Student {
@@ -12,6 +11,17 @@ public class Student {
     private Integer id;
     private String name;
     private String faculty;
+
+    @OneToMany(mappedBy = "student")
+    private List<Address> addressList;
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_language",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "language_id")
+    )
+    private List<Language> languageList;
 
     public Student(Integer id, String name, String faculty) {
         this.id = id;
@@ -49,6 +59,15 @@ public class Student {
 
     public void setFaculty(String faculty) {
         this.faculty = faculty;
+    }
+
+
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
     }
 
     @Override
