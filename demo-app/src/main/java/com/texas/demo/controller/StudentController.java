@@ -4,6 +4,7 @@ import com.texas.demo.dto.StudentDto;
 import com.texas.demo.model.Student;
 import com.texas.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,5 +23,18 @@ public class StudentController {
     @GetMapping("/{id}")
     public StudentDto fetchStudent(@PathVariable("id") Integer id){
         return studentService.getById(id);
+    }
+
+
+    @GetMapping("/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String admin(){
+        return "ADMIN";
+    }
+
+    @GetMapping("/student")
+    @PreAuthorize("hasRole('STUDENT')")
+    public String student(){
+        return "STUDENT";
     }
 }
