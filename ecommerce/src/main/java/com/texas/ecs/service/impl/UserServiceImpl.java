@@ -1,6 +1,7 @@
 package com.texas.ecs.service.impl;
 
 import com.texas.ecs.dto.UserDto;
+import com.texas.ecs.exception.StudentNotFoundException;
 import com.texas.ecs.model.User;
 import com.texas.ecs.repo.UserRepo;
 import com.texas.ecs.service.UserService;
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> userOptional = userRepo.findById(id);
         if (userOptional.isEmpty()) {
-            throw new RuntimeException("User Not Found");
+            throw new StudentNotFoundException("User Not Found");
         } else {
             User user = userOptional.get();
             UserDto userDto = new UserDto(

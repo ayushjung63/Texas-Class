@@ -1,10 +1,18 @@
 package com.texas.ecs.dto;
 
 import com.texas.ecs.enums.Role;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 public class UserDto {
     private Integer id;
+
+    @NotNull(message = "Email cannot be null")
+    @NotBlank(message = "Email cannot be blank")
     private String email;
+
+    @Length(max = 10,min = 10,message = "Contact must contain 10 digits")
     private String contact;
     private String name;
     private String address;

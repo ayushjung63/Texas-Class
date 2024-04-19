@@ -2,6 +2,7 @@ package com.texas.ecs.controller;
 
 import com.texas.ecs.dto.UserDto;
 import com.texas.ecs.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity saveUser(@RequestBody UserDto userDto){
+    public ResponseEntity saveUser(@Valid @RequestBody UserDto userDto){
         Integer data = userService.save(userDto);
         return ResponseEntity.ok(
                 Map.of("message","User Saved Successfully..")
